@@ -1,0 +1,108 @@
+package yourpackagenamehere;
+
+import java.util.Scanner;
+
+public class chessqueen {
+
+	public static void main(String[] args) {
+		
+		int[][] main=new int[8][8];
+		for(int i=0;i<main.length;i++) {
+			for(int j=0;j<main.length;j++) {
+				main[i][j]=0;
+			}
+		}
+		Scanner input=new Scanner(System.in);
+		System.out.println("Enter row for your queen");
+		int realrow=input.nextInt();
+		System.out.println("Enter col for your queen");
+		int realcol=input.nextInt();
+		int row=realrow-1;
+		int col=realcol-1;
+		
+	
+	
+		row(main,row);
+		col(main,col);
+		upleft(main,col,row);
+		upright(main,col,row);
+		downleft(main,col,row);
+		downright(main,col,row);
+		display(main);
+		
+		
+
+	}
+	public static boolean outOfIndex(int[][] array,int row,int col) {
+		if(row>=array.length || row<0) {
+			return false;
+		}
+		else if(col>=array[0].length || col<0) {
+			return false;
+		}
+		return true;
+	}
+	public static void row(int[][] array,int row) {
+		int col=0;
+		while(outOfIndex(array, row,col)) {
+			array[row][col]=1;
+			col++;
+		}
+		
+	}
+	
+	public static void col(int[][] array,int col) {
+		int row=0;
+		while(outOfIndex(array, row,col)) {
+			array[row][col]=1;
+			row++;
+		}
+		
+	}
+	public static void upleft(int[][] array,int col,int row) {
+	
+		while(outOfIndex(array, row,col)) {
+			array[row][col]=1;
+			row--;
+			col++;
+		}
+		
+	}
+	public static void upright(int[][] array,int col,int row) {
+		
+		while(outOfIndex(array, row,col)) {
+			array[row][col]=1;
+			row--;
+			col--;
+		}
+		
+	}
+	public static void downright(int[][] array,int col,int row) {
+		
+		while(outOfIndex(array, row,col)) {
+			array[row][col]=1;
+			row++;
+			col--;
+		}
+		
+	}
+        public static void downleft(int[][] array,int col,int row) {
+		
+		while(outOfIndex(array, row,col)) {
+			array[row][col]=1;
+			row++;
+			col++;
+		}
+		
+	}
+	public static void display(int[][] array) {
+		for(int i=0;i<array.length;i++) {
+			for(int j=0;j<array.length;j++) {
+				System.out.print(array[i][j]);
+			}
+			System.out.println();
+		}
+		
+	}
+
+}
