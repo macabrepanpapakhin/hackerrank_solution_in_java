@@ -28,9 +28,8 @@ public class startToend {
 			
 			
 			if (i==array.length-1 && j==array[0].length-1) {
-				System.out.println("z "+z);
+				//goal can be any place in the array
 				best=Math.min(best, z);
-				System.out.println("best "+best);
 				continue;
 			}
 			visited[i][j]=true;
