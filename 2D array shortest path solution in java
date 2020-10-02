@@ -1,0 +1,69 @@
+package test0;
+
+import java.util.*;
+
+public class startToend {
+
+	public static void main(String[] args) {
+		// 0 is path while -1 is block.
+		int[][] array=new int[][] { { 0, 0, 0, -1, 0 }, 
+            { 0, -1, -1, -1, -1 }, 
+            { 0, 0, 0, 0, -1 }, 
+            { -1, 0, -1, 0, -1 }, 
+            { 0, 0, -1, 0, 0} };
+		boolean[][] visited=new boolean[array.length][array[0].length];
+		
+		Queue<Integer[]> queue=new LinkedList<Integer[]>();
+		queue.add(new Integer[] {0,0,1});
+		int best=Integer.MAX_VALUE;
+		
+		while(!queue.isEmpty()) {
+			Integer[] currentNode=queue.poll();
+			int i=currentNode[0];
+			int j=currentNode[1];
+			int z=currentNode[2];
+			if(array[i][j]==-1 ) {
+				continue;
+			}
+			
+			
+			if (i==array.length-1 && j==array[0].length-1) {
+				System.out.println("z "+z);
+				best=Math.min(best, z);
+				System.out.println("best "+best);
+				continue;
+			}
+			visited[i][j]=true;
+			List<Integer[]> nodes=getUnvisited(i,j,array,visited,z);
+			for(Integer[] node:nodes) {
+				queue.add(node);
+			}
+			
+			
+			
+		}
+		System.out.println(best);
+		
+		
+	}
+	public static List<Integer[]> getUnvisited(
+			int i,int j,int[][] matrix,boolean[][] visited,int z){
+		    
+			List<Integer[]> unvisit=new ArrayList<Integer[]>();
+			if(i>0 && !visited[i-1][j]){
+				unvisit.add(new Integer[]{i-1,j,z+1});
+			}
+			if(i<matrix.length-1 && !visited[i+1][j]){
+				unvisit.add(new Integer[]{i+1,j,z+1});
+			}
+			if(j>0 && !visited[i][j-1]){
+				unvisit.add(new Integer[]{i,j-1,z+1});
+			}
+			if(j<matrix[0].length-1&& !visited[i][j+1]){
+				unvisit.add(new Integer[]{i,j+1,z+1});
+			}
+			return unvisit;
+		}
+//Code contributed by sai la min oak.
+}
+
